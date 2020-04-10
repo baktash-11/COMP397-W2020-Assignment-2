@@ -8,6 +8,8 @@ var config;
         Game.SCREEN_HEIGHT = 480;
         Game.FPS = 60;
         Game.ENEMYP1_NUM = util.MathB.RandomRange(5, 10);
+        Game.LIVES = 3;
+        Game.SCORE = 0;
         return Game;
     }());
     config.Game = Game;

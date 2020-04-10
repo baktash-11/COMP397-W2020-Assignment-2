@@ -16,7 +16,7 @@ module managers
                             case enums.GameObjectType.ENEMYP1:
                                 //console.log("Collision WITH eNEMYP1!");
                                let crash_Fx = createjs.Sound.play("crash_Fx");
-                               crash_Fx.volume=0.5;
+                               crash_Fx.volume=0.1;
 
                             break;
                             case enums.GameObjectType.FUEL:
@@ -59,7 +59,7 @@ module managers
                         break;
                         case enums.GameObjectType.FUEL:
                             let fuel_s =createjs.Sound.play("fuel_s");
-                            fuel_s.volume =0.5;
+                            fuel_s.volume =0.1;
                         break;
 
                     }

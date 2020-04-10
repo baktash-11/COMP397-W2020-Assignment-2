@@ -10,6 +10,10 @@ module config
         public static FPS: number = 60;
 
         public static ENEMYP1_NUM: number = util.MathB.RandomRange(5 , 10);
+
+        public static LIVES:number = 3; 
+        public static SCORE:number = 0;
+        public static SCORE_TRACKER:managers.Scoretracker; 
     }
 
 }

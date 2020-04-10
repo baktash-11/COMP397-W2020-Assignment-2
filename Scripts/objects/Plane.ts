@@ -4,8 +4,14 @@ module objects
     {
         // private variables 
         private _vPosition:number;
+        private _engineSound : createjs.AbstractSoundInstance;
 
-       
+
+        public get engineSound() : createjs.AbstractSoundInstance 
+        {
+           return this._engineSound;
+        }
+        
         //constructor
         constructor()
         {
@@ -49,9 +55,9 @@ module objects
             
             this.type = enums.GameObjectType.PLANE;
             this._vPosition = 430; // locked to the bottom of the screen
-           // let engineSound = createjs.Sound.play("engine");
-            //engineSound.loop = -1; // loop forever
-            //engineSound.volume = 0.1; // 10% volume
+            this._engineSound = createjs.Sound.play("plane");
+            this. _engineSound.loop = -1; //non stop sound
+            this. _engineSound.volume = 0.2; 
         }
 
         public Update(): void 
