@@ -9,17 +9,7 @@ var managers;
             var radii = object1.halfHeight + object2.halfHeight;
             if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
                 if (!object2.isColliding) {
-                    switch (object2.type) {
-                        case enums.GameObjectType.ENEMYP1:
-                            //console.log("Collision WITH eNEMYP1!");
-                            var crash_Fx = createjs.Sound.play("crash_Fx");
-                            crash_Fx.volume = 0.1;
-                            break;
-                        case enums.GameObjectType.FUEL:
-                            console.log("Collision WITH FUEL!");
-                            createjs.Sound.play("fuel_s");
-                            break;
-                    }
+                    Collision._collisionResponces(object2);
                     object2.isColliding = true;
                     return true;
                 }
@@ -40,21 +30,45 @@ var managers;
                 object1TopLeft.y < object2TopLeft.y + object2.height &&
                 object1TopLeft.y + object1.height > object2TopLeft.y) {
                 if (!object2.isColliding) {
-                    switch (object2.type) {
-                        case enums.GameObjectType.ENEMYP1:
-                            console.log("Collision WITH eNEMYP1!");
-                            break;
-                        case enums.GameObjectType.FUEL:
-                            var fuel_s = createjs.Sound.play("fuel_s");
-                            fuel_s.volume = 0.1;
-                            break;
-                    }
+                    Collision._collisionResponces(object2);
                 }
             }
             else {
                 object2.isColliding = false;
             }
             return false;
+        };
+        //private methods
+        //responce method to collision! 
+        Collision._collisionResponces = function (object2) {
+            switch (object2.type) {
+                case enums.GameObjectType.ENEMYP1:
+                    {
+                        var crash_Fx = createjs.Sound.play("crash_Fx");
+                        crash_Fx.volume = 0.05;
+                        config.Game.SCORE_TRACKER.Lives -= 1;
+                        if (config.Game.LIVES < 1) {
+                            //change the sccene 
+                            config.Game.SCENE = scenes.State.END;
+                        }
+                    }
+                    break;
+                case enums.GameObjectType.FUEL:
+                    {
+                        // console.log("Collision WITH FUEL!");
+                        var fuel = createjs.Sound.play("fuel_s");
+                        fuel.volume = 0.1;
+                        config.Game.SCORE_TRACKER.Score += 20;
+                        var countNuOfFuel = 0;
+                        countNuOfFuel++;
+                        console.log(countNuOfFuel);
+                        //countNuOfFuel =0;
+                        if (config.Game.HIGH_SCORE > config.Game.HIGH_SCORE) {
+                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                        }
+                    }
+                    break;
+            }
         };
         return Collision;
     }());

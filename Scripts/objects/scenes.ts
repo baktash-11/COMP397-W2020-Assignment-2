@@ -13,5 +13,7 @@ module objects
         public abstract Update():void;
 
         public abstract Main():void;
+
+        public abstract Clean():void; // to clean the scenes
     }
 }

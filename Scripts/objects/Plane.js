@@ -22,9 +22,10 @@ var objects;
             _this.Start();
             return _this;
         }
-        Object.defineProperty(Plane.prototype, "engineSound", {
+        Object.defineProperty(Plane.prototype, "planeSound", {
+            // getter and setter
             get: function () {
-                return this._engineSound;
+                return this._planeSound;
             },
             enumerable: true,
             configurable: true
@@ -38,7 +39,7 @@ var objects;
             // right bound
             if (this.position.x >= config.Game.SCREEN_WIDTH - this.halfWidth) {
                 this.position = new objects.Vector2(config.Game.SCREEN_WIDTH - this.halfWidth, this.position.y);
-                console.log("x > 640");
+                //console.log("x > 640")
             }
         };
         Plane.prototype._move = function () {
@@ -49,9 +50,9 @@ var objects;
         Plane.prototype.Start = function () {
             this.type = enums.GameObjectType.PLANE;
             this._vPosition = 430; // locked to the bottom of the screen
-            this._engineSound = createjs.Sound.play("plane");
-            this._engineSound.loop = -1; //non stop sound
-            this._engineSound.volume = 0.2;
+            this._planeSound = createjs.Sound.play("plane");
+            this._planeSound.loop = -1; //non stop sound
+            this._planeSound.volume = 0.2;
         };
         Plane.prototype.Update = function () {
             this._move();

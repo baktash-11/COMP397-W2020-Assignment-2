@@ -4,12 +4,12 @@ module objects
     {
         // private variables 
         private _vPosition:number;
-        private _engineSound : createjs.AbstractSoundInstance;
+        private _planeSound : createjs.AbstractSoundInstance;
 
-
-        public get engineSound() : createjs.AbstractSoundInstance 
+        // getter and setter
+        public get planeSound() : createjs.AbstractSoundInstance 
         {
-           return this._engineSound;
+           return this._planeSound;
         }
         
         //constructor
@@ -35,7 +35,7 @@ module objects
             if(this.position.x >= config.Game.SCREEN_WIDTH - this.halfWidth )
             {
                 this.position = new Vector2(config.Game.SCREEN_WIDTH - this.halfWidth, this.position.y);
-                console.log("x > 640")
+                //console.log("x > 640")
             }
             
 
@@ -55,9 +55,9 @@ module objects
             
             this.type = enums.GameObjectType.PLANE;
             this._vPosition = 430; // locked to the bottom of the screen
-            this._engineSound = createjs.Sound.play("plane");
-            this. _engineSound.loop = -1; //non stop sound
-            this. _engineSound.volume = 0.2; 
+            this._planeSound = createjs.Sound.play("plane");
+            this. _planeSound.loop = -1; //non stop sound
+            this. _planeSound.volume = 0.2; 
         }
 
         public Update(): void 

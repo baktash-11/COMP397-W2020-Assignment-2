@@ -64,7 +64,7 @@ var Game = (function () {
     }
     function Main() {
         if (currentSceneState != scenes.State.NO_SCENE) {
-            currentScene.removeAllChildren();
+            currentScene.Clean(); // remove all chilldren
             stage.removeAllChildren();
         }
         switch (config.Game.SCENE) {

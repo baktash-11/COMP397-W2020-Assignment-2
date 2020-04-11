@@ -22,9 +22,11 @@ module scenes
             this._testButton = new objects.Button();
            this.Main()
         }
-        public Update(): void {
+        public Update(): void
+        {
             //throw new Error("Method not implemented.");
         }
+
         public Main(): void {
             //throw new Error("Method not implemented.");
 
@@ -36,7 +38,9 @@ module scenes
             })
         }
         
-        
+        public Clean():void{
+            this.removeAllChildren();
+        }
     
     }
 }

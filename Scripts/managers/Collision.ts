@@ -11,20 +11,7 @@ module managers
             {
                 if(!object2.isColliding)
                     {
-                        switch(object2.type)
-                        {
-                            case enums.GameObjectType.ENEMYP1:
-                                //console.log("Collision WITH eNEMYP1!");
-                               let crash_Fx = createjs.Sound.play("crash_Fx");
-                               crash_Fx.volume=0.1;
-
-                            break;
-                            case enums.GameObjectType.FUEL:
-                                console.log("Collision WITH FUEL!");
-                                createjs.Sound.play("fuel_s");
-                            break;
-
-                        }
+                        Collision._collisionResponces(object2);
                         object2.isColliding = true;
                         return true;
                     }
@@ -35,6 +22,8 @@ module managers
             }
             return false;
         }
+
+       
 
         public static AABBCheck(object1:objects.GameObject, object2:objects.GameObject):boolean
         {
@@ -52,17 +41,7 @@ module managers
             {
                 if(!object2.isColliding)
                 {
-                    switch(object2.type)
-                    {
-                        case enums.GameObjectType.ENEMYP1:
-                            console.log("Collision WITH eNEMYP1!");
-                        break;
-                        case enums.GameObjectType.FUEL:
-                            let fuel_s =createjs.Sound.play("fuel_s");
-                            fuel_s.volume =0.1;
-                        break;
-
-                    }
+                    Collision._collisionResponces(object2);
                 }
                 
             }
@@ -72,7 +51,47 @@ module managers
             }
             return false;
         }
-        
+
+        //private methods
+        //responce method to collision! 
+        private static _collisionResponces(object2: objects.GameObject) {
+            switch (object2.type) {
+                case enums.GameObjectType.ENEMYP1:
+
+                    {
+                        let crash_Fx = createjs.Sound.play("crash_Fx");
+                        crash_Fx.volume = 0.05;
+                        config.Game.SCORE_TRACKER.Lives -= 1;
+
+                        if(config.Game.LIVES < 1){
+                            //change the sccene 
+                            config.Game.SCENE= scenes.State.END;
+                        } 
+                    }
+                    break;
+                case enums.GameObjectType.FUEL:
+                    {
+                        // console.log("Collision WITH FUEL!");
+                        let fuel = createjs.Sound.play("fuel_s");
+                        fuel.volume = 0.1;
+                        config.Game.SCORE_TRACKER.Score += 20;
+                        let countNuOfFuel : number =0; 
+                        countNuOfFuel ++;
+                        console.log(countNuOfFuel);
+                        //countNuOfFuel =0;
+
+                        if(config.Game.HIGH_SCORE > config.Game.HIGH_SCORE)
+                        {
+                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                        }
+                    }
+                   
+                  
+                    break;
+
+
+            }
+        }
 
     }
 }

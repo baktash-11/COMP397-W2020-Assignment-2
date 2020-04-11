@@ -51,7 +51,6 @@ module objects
         public Reset(): void 
         {
             this._verticalSpeed = util.MathB.RandomRange(1, 2);
-            
             this._verticalSpeed = util.MathB.RandomRange(2, 5);
            
             this._horizontalSpeed = util.MathB.RandomRange(-2, 2);

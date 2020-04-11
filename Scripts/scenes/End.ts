@@ -4,8 +4,11 @@ module scenes
     {
         //variables and private memebers 
 
-        private _Label:objects.Lable;
+        private _LabelEnd:objects.Lable;
         private _sky:objects.Sky;
+        private _backButton:objects.Button;
+        private _scoreTracker:managers.Scoretracker;
+
         
         constructor()
         {
@@ -18,8 +21,14 @@ module scenes
         public Start(): void 
         {
             //throw new Error("Method not implemented.");
-            this._Label= new objects.Lable("The Game is Ended", "24px", "Consolas", "#B4D0E7", 320, 240, true);
+            this._LabelEnd= new objects.Lable("GAME OVER", "40px", "Consolas", "#FF0000", 320, 240, true);
             this._sky= new objects.Sky();
+            this._backButton = new objects.Button(config.Game.ASSETS.getResult("backButton"),320, 400, true);
+
+            this._scoreTracker = new managers.Scoretracker();
+            this._scoreTracker.HighScore = config.Game.HIGH_SCORE
+
+            
             this.Main();
         }
         public Update(): void 
@@ -29,10 +38,22 @@ module scenes
         }
         public Main(): void 
         {
+            //throw new Error("Method not implemented.");
             this.addChild(this._sky);
-            this.addChild(this._Label);
-           //throw new Error("Method not implemented.");
+            this.addChild(this._LabelEnd);
+            this.addChild(this._backButton);
+            this.addChild(this._scoreTracker.HeghScoreLabelForEndScene);
+
+            this._backButton.on("click",()=>{
+            config.Game.SCORE_TRACKER.Lives=3;
+            config.Game.SCORE_TRACKER.Score=0;
+            config.Game.SCENE = scenes.State.PLAY;
+        });
+
         }
         
+        public Clean():void {
+            this.removeAllChildren();
+        }
     }
 }

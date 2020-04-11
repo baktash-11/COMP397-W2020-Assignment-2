@@ -43,6 +43,9 @@ var scenes;
                 config.Game.SCENE = scenes.State.PLAY;
             });
         };
+        Start.prototype.Clean = function () {
+            this.removeAllChildren();
+        };
         return Start;
     }(objects.Scene));
     scenes.Start = Start;

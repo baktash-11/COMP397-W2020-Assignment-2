@@ -30,9 +30,12 @@ var scenes;
             this._plane = new objects.Plane();
             //_enempP1's array 
             this._enemyP1 = new Array();
+            //push the object in array.
             for (var index = 0; index < config.Game.ENEMYP1_NUM; index++) {
                 this._enemyP1.push(new objects.EnemyP1);
             }
+            this._scoreTracker = new managers.Scoretracker();
+            config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -40,10 +43,10 @@ var scenes;
             this._sky.Update();
             this._plane.Update();
             this._fuel.Update();
-            managers.Collision.AABBCheck(this._plane, this._fuel);
+            managers.Collision.squaredRadiusCheck(this._plane, this._fuel); //collision
             this._enemyP1.forEach(function (enemyP1) {
                 enemyP1.Update();
-                managers.Collision.squaredRadiusCheck(_this._plane, enemyP1);
+                managers.Collision.squaredRadiusCheck(_this._plane, enemyP1); // collision
             });
         };
         Play.prototype.Main = function () {
@@ -54,9 +57,16 @@ var scenes;
                 this, this.addChild(enemyP1);
             }
             this.addChild(this._plane);
+            this.addChild(this._scoreTracker.LivesLabel);
+            this.addChild(this._scoreTracker.ScoreLable);
+            this.addChild(this._scoreTracker.HighScoreLabel);
             /*  this._plane.on("click", ()=>{
                  config.Game.SCENE = scenes.State.END;
              }); */
+        };
+        Play.prototype.Clean = function () {
+            this._plane.planeSound.stop();
+            this.removeAllChildren();
         };
         return Play;
     }(objects.Scene));
