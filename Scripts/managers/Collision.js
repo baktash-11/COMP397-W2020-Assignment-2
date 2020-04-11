@@ -63,7 +63,7 @@ var managers;
                         countNuOfFuel++;
                         console.log(countNuOfFuel);
                         //countNuOfFuel =0;
-                        if (config.Game.HIGH_SCORE > config.Game.HIGH_SCORE) {
+                        if (config.Game.HIGH_SCORE < config.Game.SCORE) {
                             config.Game.HIGH_SCORE = config.Game.SCORE;
                         }
                     }

@@ -97,12 +97,6 @@ var managers;
             this._heghScoreLabelForEndScene = new objects.Lable("High Score: 00", "30px", "Arail", "#FFF", 320, 200, true);
             this.Lives = config.Game.LIVES;
             this.Score = config.Game.SCORE;
-            if (config.Game.HIGH_SCORE < config.Game.SCORE) {
-                this.HighScore = config.Game.SCORE;
-            }
-            else {
-                this.HighScore = config.Game.HIGH_SCORE;
-            }
         };
         return Scoretracker;
     }());

@@ -74,16 +74,20 @@ module managers
                         // console.log("Collision WITH FUEL!");
                         let fuel = createjs.Sound.play("fuel_s");
                         fuel.volume = 0.1;
+
+
                         config.Game.SCORE_TRACKER.Score += 20;
                         let countNuOfFuel : number =0; 
                         countNuOfFuel ++;
                         console.log(countNuOfFuel);
                         //countNuOfFuel =0;
 
-                        if(config.Game.HIGH_SCORE > config.Game.HIGH_SCORE)
+                        if(config.Game.HIGH_SCORE < config.Game.SCORE)
                         {
                             config.Game.HIGH_SCORE = config.Game.SCORE;
                         }
+                       
+                   
                     }
                    
                   

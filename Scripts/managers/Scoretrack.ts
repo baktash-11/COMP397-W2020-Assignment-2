@@ -43,6 +43,7 @@ module managers
 
             return this._highScore;
         }
+        
         public set HighScore(v : number) {
             this._highScore = v;
             config.Game.HIGH_SCORE = this._score;

@@ -35,7 +35,8 @@ var scenes;
                 this._enemyP1.push(new objects.EnemyP1);
             }
             this._scoreTracker = new managers.Scoretracker();
-            config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....
+            config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....\
+            this._scoreTracker.HighScore = config.Game.HIGH_SCORE;
             this.Main();
         };
         Play.prototype.Update = function () {

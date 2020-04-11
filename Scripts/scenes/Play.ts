@@ -38,7 +38,9 @@ module scenes
             }
 
             this._scoreTracker = new managers.Scoretracker();
-            config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....
+            config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....\
+            this._scoreTracker.HighScore = config.Game.HIGH_SCORE;
+            
             this.Main()            
         }
 
