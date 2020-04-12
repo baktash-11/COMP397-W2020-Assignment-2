@@ -3,11 +3,9 @@ module objects
     export class Button extends GameObject
     {
         
-        constructor(imagePath:Object=config.Game.ASSETS.getResult("placeHolder"),
-                    x:number = 0, y:number= 0, 
-                    isCentered:boolean = false)
+        constructor(button_name:string = "placeHolder", x:number = 0, y:number= 0, isCentered:boolean = false)
         {
-            super(imagePath, x, y, isCentered);
+            super(config.Game.TEXTURE_ATLAS, button_name, x, y, isCentered);
 
             this.on("mouseover", this.MouseOver);
             this.on("mouseout", this.MouseOut);

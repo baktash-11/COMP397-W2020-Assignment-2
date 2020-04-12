@@ -5,7 +5,8 @@ module objects
         // private variables 
         private _vPosition:number;
         private _planeSound : createjs.AbstractSoundInstance;
-
+        private _bulletSpawn: objects.Vector2;
+        private _horizontalSpeed: number;
         // getter and setter
         public get planeSound() : createjs.AbstractSoundInstance 
         {
@@ -15,7 +16,7 @@ module objects
         //constructor
         constructor()
         {
-            super(config.Game.ASSETS.getResult("planeSmall"), 0, 0, true);
+            super(config.Game.TEXTURE_ATLAS, "p1", 0, 0, true);
 
             this.Start();
         }

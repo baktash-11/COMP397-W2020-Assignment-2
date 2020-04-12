@@ -18,7 +18,7 @@ var objects;
         __extends(Plane, _super);
         //constructor
         function Plane() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("planeSmall"), 0, 0, true) || this;
+            var _this = _super.call(this, config.Game.TEXTURE_ATLAS, "p1", 0, 0, true) || this;
             _this.Start();
             return _this;
         }

@@ -23,7 +23,7 @@ module scenes
             //throw new Error("Method not implemented.");
             this._LabelEnd= new objects.Lable("GAME OVER", "40px", "Consolas", "#FF0000", 320, 240, true);
             this._sky= new objects.Sky();
-            this._backButton = new objects.Button(config.Game.ASSETS.getResult("backButton"),320, 400, true);
+            this._backButton = new objects.Button("buttonBack",320, 400, true);
 
             this._scoreTracker = new managers.Scoretracker();
             this._scoreTracker.HighScore = config.Game.HIGH_SCORE

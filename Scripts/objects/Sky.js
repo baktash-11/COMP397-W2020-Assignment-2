@@ -19,7 +19,7 @@ var objects;
         //public  properties 
         //construcor 
         function Sky() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("sky")) || this;
+            var _this = _super.call(this, config.Game.SKY_ATLAS, "sky") || this;
             _this.Start();
             return _this;
         }

@@ -13,7 +13,7 @@ module objects
         //construcor 
         constructor()
         {
-            super(config.Game.ASSETS.getResult("enemyP1"), new Vector2(), true);
+            super(config.Game.TEXTURE_ATLAS, "enemyPlane", new Vector2(), true);
             this.Start();
         }
         //private methods 

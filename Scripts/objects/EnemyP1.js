@@ -19,7 +19,7 @@ var objects;
         //public  properties 
         //construcor 
         function EnemyP1() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("enemyP1"), new objects.Vector2(), true) || this;
+            var _this = _super.call(this, config.Game.TEXTURE_ATLAS, "enemyPlane", new objects.Vector2(), true) || this;
             _this.Start();
             return _this;
         }

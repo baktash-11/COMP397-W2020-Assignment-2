@@ -11,7 +11,7 @@ module objects
         //construcor 
         constructor()
         {
-            super(config.Game.ASSETS.getResult("sky"));
+            super(config.Game.SKY_ATLAS, "sky");
             this.Start();
         }
         //private methods 

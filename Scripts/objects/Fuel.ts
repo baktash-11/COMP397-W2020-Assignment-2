@@ -12,7 +12,7 @@ module objects
         //construcor 
         constructor()
         {
-            super(config.Game.ASSETS.getResult("fuel"), new Vector2(), true);
+            super(config.Game.TEXTURE_ATLAS, "fuel", new Vector2(), true);
             this.Start();
         }
         //private methods 

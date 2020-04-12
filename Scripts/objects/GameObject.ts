@@ -1,24 +1,23 @@
 module objects
 {
-    export abstract class GameObject extends createjs.Bitmap
+    export abstract class GameObject extends createjs.Sprite
     {
-        // private varaibles 
+        // PRIVATE INSTANCE MEMBERS
         private _width:number;
         private _height:number;
         private _halfWidth:number;
         private _halfHeight:number;
-        private _position:Vector2;
-        private _isColliding:boolean;
 
+        private _position:Vector2;
         private _velocity:Vector2;
-        private _isCentred:boolean;
-        private _type : enums.GameObjectType;
-        
-        
-       
-        
-        
-        //getters and setters
+
+        private _isColliding:boolean;
+        private _isCentered:boolean;
+        private _isActive : boolean;
+
+        private _type: enums.GameObjectType;
+
+        // PUBLIC PROPERTIES
         get width():number
         {
             return this._width;
@@ -40,6 +39,17 @@ module objects
             this._height = newHeight;
             this._halfHeight = this._computeHalfHeight();
         }
+
+        get halfWidth():number
+        {
+            return this._halfWidth;
+        }
+
+        get halfHeight():number
+        {
+            return this._halfHeight;
+        }
+
         get position():Vector2
         {
             return this._position;
@@ -51,14 +61,15 @@ module objects
             this.x = newPosition.x;
             this.y = newPosition.y;
         }
-        get halfWidth():number
+
+        get velocity():Vector2
         {
-            return this._halfWidth;
+            return this._velocity;
         }
 
-        get halfHeight():number
+        set velocity(newVelocity:Vector2)
         {
-            return this._halfHeight;
+            this._velocity = newVelocity;
         }
 
         get isColliding():boolean
@@ -70,83 +81,90 @@ module objects
         {
             this._isColliding = newState;
         }
+
         get isCentered():boolean
         {
-            return this._isCentred;
-
+            return this._isCentered;
         }
 
-        set isCentered(newState:boolean){
-            this._isCentred = newState;
+        set isCentered(newState:boolean)
+        {
+            this._isCentered = newState;
             if(newState)
             {
-                this._centerGameOjbect();
+                this._centerGameObject();
             }
         }
 
-        get velocity():Vector2
+        public get isActive() : boolean 
         {
-           return this._velocity;
+            return this._isActive;
         }
-        set velocity(newv:Vector2){
-            this._velocity = newv;
+        
+        public set isActive(v : boolean) 
+        {
+            this._isActive = v;
         }
 
-        public get type() : enums.GameObjectType {
+        public get type() : enums.GameObjectType 
+        {
             return this._type;
         }
-        public set type(v : enums.GameObjectType) {
+
+        public set type(v : enums.GameObjectType) 
+        {
             this._type = v;
         }
 
 
-        // constructor
-        //constructor(imageString:Object = config.Game.ASSETS.getResult("placeHolder"),x:number = 0, y:number = 0, centered:boolean = false)
-        constructor(imageString?:Object, x?:number, y?:number, centered?:boolean)
-        constructor(imageString:Object, postion:objects.Vector2, cetered?:boolean)
-        constructor(first: Object = config.Game.ASSETS.getResult("placeHolder"), second: Vector2 | number =0, third: boolean | number =0, fourth:boolean= false)
-        
+        // CONSTRUCTOR
+        constructor(sprite_sheet?:createjs.SpriteSheet, frame_name?: string, x?:number, y?:number, centered?:boolean)
+        constructor(sprite_sheet:createjs.SpriteSheet, frame_name: string, position: objects.Vector2, centered?: boolean)
+        constructor(first: createjs.SpriteSheet,second: string = "placeholder",  third: Vector2 | number = 0, fourth: boolean | number = 0, fifth:boolean = false)
         {
-            super(first);
+            super(first, second);
 
-            
+            // initialization
             this._width = 0;
             this._height = 0;
             this._halfWidth = 0;
             this._halfHeight = 0;
             this._position = new Vector2(0, 0, this);
-            this._isColliding = false;
             this._velocity = new Vector2(0, 0);
-            this._isCentred= false;
-
+            this._isColliding = false;
+            this._isCentered = false;
+            this._isActive = false;
             
-
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
 
-            if(fourth != undefined){
+            if(fifth != undefined)
+            {
+                this.isCentered = fifth;
+            }
+
+            if(typeof fourth == "boolean")
+            {
                 this.isCentered = fourth;
             }
-            if(typeof third == "boolean"){
-                this.isCentered = third;
-            }
-            if(typeof second =="number" && typeof third == "number"){
-                this.position = new Vector2(second, third, this);
+            
+
+            if((typeof third == "number") && (typeof fourth == "number"))
+            {
+                this.position = new Vector2(third, fourth, this);
             }
 
-            if(second instanceof Vector2){
-                this.position = second;
+            if(third instanceof Vector2)
+            {
+                this.position = third;
             }
+
             this.type = enums.GameObjectType.UNDEFINED;
+            
 
         }
 
-        // private methods (functions)
-        private _centerGameOjbect():void
-        {
-            this.regX = this.halfWidth;
-            this.regY = this.halfHeight;
-        }
+        // PRIVATE METHODS
         private _computeHalfWidth():number
         {
             return this.width * 0.5;
@@ -157,16 +175,22 @@ module objects
             return this.height * 0.5;
         }
 
+        private _centerGameObject():void
+        {
+            this.regX = this.halfWidth;
+            this.regY = this.halfHeight;
+        }
+
         protected abstract _checkBounds():void;
 
 
-        // public functions
+        // PUBLIC METHODS
 
         public abstract Start():void;
-        public abstract Reset():void;
+
         public abstract Update():void;
         
-        
+        public abstract Reset():void;
 
     }
 

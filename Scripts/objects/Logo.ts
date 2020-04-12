@@ -7,7 +7,7 @@ module objects
         x:number = 0, y:number= 0, 
         isCentered:boolean = false)
         {
-            super(imagePath, x, y, isCentered);
+            super();
 
             this.Start();
         }   

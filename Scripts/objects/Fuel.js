@@ -19,7 +19,7 @@ var objects;
         //public  properties 
         //construcor 
         function Fuel() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("fuel"), new objects.Vector2(), true) || this;
+            var _this = _super.call(this, config.Game.TEXTURE_ATLAS, "fuel", new objects.Vector2(), true) || this;
             _this.Start();
             return _this;
         }
