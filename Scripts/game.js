@@ -7,29 +7,13 @@ var Game = (function () {
     var currentScene;
     var textureAtlas;
     var skyAtlas;
+    var logoAtlas;
     var assets;
     var assetsManifest = [
         //loading assets 
         { id: "atlas", src: "./Assets/sprites/atlas.png" },
         { id: "sky", src: "./Assets/images/sky.png" },
-        /*
-        {id:"planeSmall", src:"./Assets/images/planeSmall.png"},
-        {id:"enemyP1", src:"./Assets/images/enemyPlane.png"},
-        {id:"fuel", src:"./Assets/images/fuel.png"},
-        {id:"PlaneS", src:"./Assets/images/PlaneSmall.gif"},
-        {id:"ePlaneSmall3", src:"./Assets/images/ePlane.png"},
-        {id:"logo", src:"./Assets/images/logo.png"},
-        
-        {id:"backButton", src:"./Assets/images/buttonBack.png"},
-        {id:"nextButton", src:"./Assets/images/buttonNext.png"},
-        {id:"playButton", src:"./Assets/images/buttonPlay.png"},
-        {id:"stopButton", src:"./Assets/images/buttonStop.png"},
-        {id:"stopButton1", src:"./Assets/images/buttonStop1.png"},
-        {id:"stopButton2", src:"./Assets/images/buttonStop2.png"},
-        {id:"plane", src:"./Assets/images/plane.png"},
-        {id:"plane2", src:"./Assets/images/plane3.png"},
-        {id:"placeHolder", src:"./Assets/images/placeHolder.png"},
-        */
+        { id: "logo", src: "./Assets/images/logo.png" },
         //the sounds
         //./Assets/audio/fx_Crash.mp3
         { id: "crash_Fx", src: "./Assets/audio/falldown.mp3" },
@@ -78,6 +62,15 @@ var Game = (function () {
             "sky": { "frames": [0] }
         }
     };
+    var logoData = {
+        "images": {},
+        "frames": [
+            [1, 1, 321, 245, 0, 0, -17]
+        ],
+        "animations": {
+            "logo": { "frames": [0] }
+        }
+    };
     function Preload() {
         //creating assets container 
         assets = new createjs.LoadQueue();
@@ -99,6 +92,9 @@ var Game = (function () {
         skyData.images = [assets.getResult("sky")];
         skyAtlas = new createjs.SpriteSheet(skyData);
         config.Game.SKY_ATLAS = skyAtlas;
+        logoData.images = [assets.getResult("logo")];
+        logoAtlas = new createjs.SpriteSheet(logoData);
+        config.Game.LOGO_ATLAS = logoAtlas;
         currentSceneState = scenes.State.NO_SCENE;
         config.Game.SCENE = scenes.State.START;
     }

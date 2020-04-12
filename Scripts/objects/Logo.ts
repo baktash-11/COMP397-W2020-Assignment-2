@@ -3,9 +3,9 @@ module objects
     export class Logo extends GameObject
     {
       
-        constructor(imagePath:Object = config.Game.ASSETS.getResult("logo"),
-        x:number = 0, y:number= 0, 
-        isCentered:boolean = false)
+        constructor(log_name:string = "placeHolder",
+        x:number = 320, y:number= 240, 
+        isCentered:boolean = true)
         {
             super();
 
@@ -16,7 +16,7 @@ module objects
 
         public Update(): void 
         {
-           this.position = new Vector2(this.stage.mouseX, this.stage.mouseY);
+           
         }
 
         public Reset(): void {}

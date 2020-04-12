@@ -19,6 +19,7 @@ module config
 
         public static TEXTURE_ATLAS: createjs.SpriteSheet;
         public static SKY_ATLAS: createjs.SpriteSheet;
+        public static LOGO_ATLAS: createjs.SpriteSheet;
 
         public static BULLET_MANAGER: managers.Bullet;
         public static KEYBOARD_MANAGER: managers.Keyboard;
