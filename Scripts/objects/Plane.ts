@@ -45,8 +45,16 @@ module objects
 
         private _move(): void
         {
-            let newPositionX = util.MathB.Lerp(this.position.x, this.stage.mouseX, 0.07);
-            this.position = new Vector2(newPositionX, this._vPosition);
+            if(config.Game.KEYBOARD_MANAGER.MoveRight || config.Game.KEYBOARD_MANAGER.MoveLeft)
+            {
+                let newPositionX = (config.Game.KEYBOARD_MANAGER.MoveRight)?
+                this.position.x + this._horizontalSpeed : this. position.x -this._horizontalSpeed;
+
+                newPositionX = util.MathB.Lerp(this.position.x, newPositionX, 0.5);
+                this.position = new Vector2(newPositionX, this._vPosition);
+            }
+            this._bulletSpawn = new Vector2(this.position.x, this.position.y - this.halfHeight);
+           
         }
         
         // PUBLIC METHODS
@@ -59,19 +67,33 @@ module objects
             this._planeSound = createjs.Sound.play("plane");
             this. _planeSound.loop = -1; //non stop sound
             this. _planeSound.volume = 0.2; 
+            this._horizontalSpeed = 10;
+            this.position = new objects.Vector2(config.Game.SCREEN_WIDTH * 0.5, this._vPosition);
         }
 
         public Update(): void 
         {
             this._move();
             this._checkBounds();
+            
+            if(createjs.Ticker.getTicks() % 5 == 0)
+            {
+                if(config.Game.KEYBOARD_MANAGER.Fire)
+                {
+                    this.FireBullets();
+                }
+            }
         }
 
         public Reset(): void 
         {
 
         }
-
+        public FireBullets(): void
+        {
+            let bullet = config.Game.BULLET_MANAGER.GetBullet();
+            bullet.position = this._bulletSpawn;
+        }
         
     }
 

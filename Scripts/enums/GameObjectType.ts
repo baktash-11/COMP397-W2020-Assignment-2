@@ -10,5 +10,6 @@ module enums
         PLAYER, 
         UNDEFINED,
         NUM_OF_TYPES,
+        BULLET,
     }
 }

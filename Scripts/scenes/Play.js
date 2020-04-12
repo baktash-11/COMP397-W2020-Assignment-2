@@ -37,6 +37,10 @@ var scenes;
             this._scoreTracker = new managers.Scoretracker();
             config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....\
             this._scoreTracker.HighScore = config.Game.HIGH_SCORE;
+            this._bulletManager = new managers.Bullet();
+            config.Game.BULLET_MANAGER = this._bulletManager;
+            this._keyboardManager = new managers.Keyboard();
+            config.Game.KEYBOARD_MANAGER = this._keyboardManager;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -44,6 +48,7 @@ var scenes;
             this._sky.Update();
             this._plane.Update();
             this._fuel.Update();
+            this._bulletManager.Update();
             managers.Collision.squaredRadiusCheck(this._plane, this._fuel); //collision
             this._enemyP1.forEach(function (enemyP1) {
                 enemyP1.Update();
@@ -64,6 +69,7 @@ var scenes;
             /*  this._plane.on("click", ()=>{
                  config.Game.SCENE = scenes.State.END;
              }); */
+            this._bulletManager.AddBulletsToScene(this);
         };
         Play.prototype.Clean = function () {
             this._plane.planeSound.stop();

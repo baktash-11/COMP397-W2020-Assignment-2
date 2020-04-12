@@ -11,6 +11,7 @@ var enums;
         GameObjectType[GameObjectType["PLAYER"] = 5] = "PLAYER";
         GameObjectType[GameObjectType["UNDEFINED"] = 6] = "UNDEFINED";
         GameObjectType[GameObjectType["NUM_OF_TYPES"] = 7] = "NUM_OF_TYPES";
+        GameObjectType[GameObjectType["BULLET"] = 8] = "BULLET";
     })(GameObjectType = enums.GameObjectType || (enums.GameObjectType = {}));
 })(enums || (enums = {}));
 //# sourceMappingURL=GameObjectType.js.map

@@ -10,6 +10,9 @@ module scenes
         private _enemyP1?: Array<objects.EnemyP1>;
         private _scoreTracker :managers.Scoretracker;
 
+        private _bulletManager: managers.Bullet;
+        private _keyboardManager: managers.Keyboard;
+
 
         
         //constructor 
@@ -41,6 +44,12 @@ module scenes
             config.Game.SCORE_TRACKER = this._scoreTracker; //updating this scoreTracker on config/game.....\
             this._scoreTracker.HighScore = config.Game.HIGH_SCORE;
             
+            this._bulletManager = new managers.Bullet();
+            config.Game.BULLET_MANAGER = this._bulletManager;
+
+            this._keyboardManager = new managers.Keyboard();
+            config.Game.KEYBOARD_MANAGER = this._keyboardManager;
+
             this.Main()            
         }
 
@@ -50,6 +59,7 @@ module scenes
             this._sky.Update();
             this._plane.Update();
             this._fuel.Update();
+            this._bulletManager.Update();
 
             managers.Collision.squaredRadiusCheck(this._plane, this._fuel); //collision
 
@@ -78,6 +88,8 @@ module scenes
            /*  this._plane.on("click", ()=>{
                 config.Game.SCENE = scenes.State.END;
             }); */
+
+            this._bulletManager.AddBulletsToScene(this);
         }
 
         public Clean():void{
